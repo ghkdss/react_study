@@ -1,5 +1,5 @@
 function Detail({ boardTitle, setBoardTitle, titleIndex }) {
-
+  
   return (
     <div className="detail">
       <button onClick={() => {
