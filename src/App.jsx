@@ -33,7 +33,9 @@ function App() {
         <p>2025-07-16</p>
       </div>
       <div className="list">
-        <h4>{boardTitle[2]}</h4>
+        <h4 onClick={() => {
+          setShow(!show);
+        }}>{boardTitle[2]}</h4>
         <p>2025-07-16</p>
       </div>
 
