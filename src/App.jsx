@@ -8,9 +8,10 @@ function App() {
   const [title, setTitle] = useState('상품목록');
   const [boardTitle, setBoardTitle]
                          = useState(['React', 'HTML', 'CSS']);
-  const [like, setLike] = useState(0);
+  const [like, setLike] = useState([0, 0, 0]);
   const [show, setShow] = useState(false);
 
+  let arr = [1,2,3,4,5];
 
   function change() {
     setLike(like + 1);
@@ -24,20 +25,25 @@ function App() {
       <button onClick={() => {
         setTitle('게시판');
       }}>제목바꾸기</button>
-      <div className="list">
-        <h4>{boardTitle[0]}<button onClick={change}>좋아요</button> {like} </h4>
-        <p>2025-07-16</p>
-      </div>
-      <div className="list">
-        <h4>{boardTitle[1]}</h4>
-        <p>2025-07-16</p>
-      </div>
-      <div className="list">
-        <h4 onClick={() => {
-          setShow(!show);
-        }}>{boardTitle[2]}</h4>
-        <p>2025-07-16</p>
-      </div>
+
+      {
+        boardTitle.map((title, i) => {
+          return (
+            <div className="list" key={i}>
+              <h4 onClick={() => {
+                setShow(!show);
+              }}>{title}<button onClick={(e) => {
+                e.stopPropagation();
+
+                let _like = [...like];
+                _like[i] = _like[i] + 1;
+                setLike(_like);
+              }}>좋아요</button> {like[i]} </h4>
+              <p>2025-07-16</p>
+            </div>
+          )
+        })
+      }
 
       <button onClick={() => {
         let _boardTitle = [...boardTitle];
