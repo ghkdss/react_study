@@ -10,8 +10,12 @@ function App() {
                          = useState(['React', 'HTML', 'CSS']);
   const [like, setLike] = useState([0, 0, 0]);
   const [show, setShow] = useState(false);
+  // 몇번째 게시글을 클릭한지 저장
+  const [titleIndex, setTitleIndex] = useState(0);
 
-  let arr = [1,2,3,4,5];
+  function test() {
+    alert('ㅋㅋ');
+  }
 
   function change() {
     setLike(like + 1);
@@ -32,6 +36,7 @@ function App() {
             <div className="list" key={i}>
               <h4 onClick={() => {
                 setShow(!show);
+                setTitleIndex(i);
               }}>{title}<button onClick={(e) => {
                 e.stopPropagation();
 
@@ -53,7 +58,10 @@ function App() {
       }}>첫번째 게시물 제목바꾸기</button>
 
       {
-        show ? <Detail /> : ''
+        show ? <Detail boardTitle={boardTitle} 
+                      setBoardTitle={setBoardTitle} 
+                      titleIndex={titleIndex} 
+                /> : ''
       } 
 
     </div>
